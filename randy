@@ -1,8 +1,4 @@
 
-srun --pty bash # Se connecter à un noeud
-eval "$(/local/miniconda3/condabin/conda shell.bash hook)"
-conda init bash
-
 
 # Salmon_RNAseq
 conda create --name RNAseq_Salmon # Créer un environnement conda
