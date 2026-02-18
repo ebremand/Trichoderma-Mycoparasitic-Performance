@@ -1,77 +1,98 @@
-
+#!/bin/bash
 ###############################################################################
-## Desciption du script
-
-# Permet d'aligner des données de RNAseq sur un génome ou un transcriptome
-# Utilise le logiciel Salmon
-
-###############################################################################
-
-# Variables
-
-fastq="/scratch/ebremand/Scratch/Data/RNAseq_2/*a_Pu*"
-
-transcriptome="/scratch/ebremand/Scratch/Data/References/Transcriptomes/N1508_Pu19_transcripts.fa" # Transcriptome de reference
-
-output="/scratch/ebremand/Scratch/Job/Genomes_T.atroviride_2/4-RNAseq/N1508_Pu19" 
-mkdir -p $output
-
+# Script: Salmon.sh
+# Description:
+#   1. Run FastQC on all FASTQ files in the input directory.
+#   2. Align RNA-seq reads to a genome or transcriptome using Salmon.
+#   3. Generate count and TPM tables for downstream analysis.
+#   4. Run MultiQC to summarize FastQC and Salmon outputs.
+#
+#   To use:
+#     - Edit the variables below to point to your FASTQ files, reference
+#       transcriptome, and output directory.
 ###############################################################################
 
-salmon --version
+# -------------------------
+# === USER VARIABLES ===
+# -------------------------
+FASTQ_DIR="/path/to/your/fastq_files/*"
+TRANSCRIPTOME="/path/to/your/reference_transcriptome.fa"
+OUTPUT_DIR="/path/to/your/output_directory"
+THREADS=10
 
-echo "########## Running salmon index with Transcriptome ##########"
+# Create all necessary subdirectories inside OUTPUT_DIR
+mkdir -p "$OUTPUT_DIR/fastqc"
+mkdir -p "$OUTPUT_DIR/quant"
 
-salmon index -t $transcriptome -i $output/Reference_index
+# -------------------------
+# === RUN FASTQC ===
+# -------------------------
+echo "########## Running FastQC on all FASTQ files ##########"
+for fq in $FASTQ_DIR/*_1.fq.gz $FASTQ_DIR/*_2.fq.gz; do
+    fastqc -o "$OUTPUT_DIR/fastqc" -t "$THREADS" "$fq"
+done
+echo "FastQC completed. Results in $OUTPUT_DIR/fastqc"
 
-mkdir $output/quant
+# -------------------------
+# === BUILD SALMON INDEX ===
+# -------------------------
+echo "########## Running Salmon index ##########"
+salmon index -t "$TRANSCRIPTOME" -i "$OUTPUT_DIR/Reference_index"
 
+# -------------------------
+# === RUN SALMON QUANT ===
+# -------------------------
+echo "########## Starting Salmon quantification ##########"
+for R1 in $FASTQ_DIR/*_1.fq.gz; do
+    PREFIX=$(basename "$R1" _1.fq.gz)
+    salmon quant \
+        -i "$OUTPUT_DIR/Reference_index" \
+        --libType A \
+        -1 "$FASTQ_DIR/${PREFIX}_1.fq.gz" \
+        -2 "$FASTQ_DIR/${PREFIX}_2.fq.gz" \
+        -p "$THREADS" \
+        --seqBias \
+        --useVBOpt \
+        --validateMappings \
+        -o "$OUTPUT_DIR/quant/${PREFIX}"
+done
+echo "End of Salmon quantification"
 
-echo "########## Début Salmon quant ##########"
-
-for r1 in $fastq/*_1.fq.gz; do
-    prefix=$(basename $r1 _1.fq.gz)
-    salmon quant -i $output/Reference_index --libType A -1 $fastq/${prefix}_1.fq.gz -2 $fastq/${prefix}_2.fq.gz -p 20 --seqBias --useVBOpt --validateMappings -o $output/quant/${prefix}
+# -------------------------
+# === POST-PROCESSING QUANT FILES ===
+# -------------------------
+cd "$OUTPUT_DIR/quant"
+for i in *; do
+    cp "$i/quant.sf" "$i.sf"
 done
 
-#for r1 in $fastq/*R1.fastq; do
-#    prefix=$(basename $r1 R1.fastq)
-#    salmon quant -i $output/Reference_index --libType A -1 $fastq/${prefix}R1.fastq -2 $fastq/${prefix}R2.fastq -p 20 --seqBias --useVBOpt --validateMappings -o $output/quant/${prefix}
-#done
+FIRST_FILE=$(ls -1 *.sf | head -1)
+awk '{print $1}' "$FIRST_FILE" > geneID
 
-
-
-echo "Fin de Salmon quant"
-cd $output/quant/
-for i in *; do  cp "$i/quant.sf" "$i.sf" ; done # Renomme les fichiers quant en .sf
-
-echo "Création des fichiers TPM et count"
-# Créer une table de comptage en count et en TPM
-file1=`ls -1 *.sf | head -1` # On récupère le 1er fichier pour extraire la colonne correspondant au nom des gènes
-awk -F" " '{print $1}' $file1 > geneID # Extraction du nom des gènes
-
-
-for i in *.sf # Création du tableau TPM en reprenant les valeurs des colonnes 4 de tous les fichiers
-do
-  colName=$(echo $(basename $i .${i##*.}))
-  awk -F" " '{print $4}' $i > $i.temp
-  sed -i 's/TPM/'$colName'/g' $i.temp  
+# Create TPM table
+for i in *.sf; do
+    COLNAME=$(basename "$i" .sf)
+    awk '{print $4}' "$i" > "$i.temp"
+    sed -i "s/TPM/$COLNAME/g" "$i.temp"
 done
-paste geneID *.temp > ../TPM.txt # Le fichier TPM.txt est formé avec les TPM et les noms de gènes
+paste geneID *.temp > ../TPM.txt
 
-
-for i in *.sf # Création du tableau count en reprenant les valeurs des colonnes 5 de tous les fichiers
-do
-  colName=$(echo $(basename $i .${i##*.}))
-  awk -F" " '{print $5}' $i > $i.temp
-  sed -i 's/NumReads/'$colName'/g' $i.temp  
+# Create count table
+for i in *.sf; do
+    COLNAME=$(basename "$i" .sf)
+    awk '{print $5}' "$i" > "$i.temp"
+    sed -i "s/NumReads/$COLNAME/g" "$i.temp"
 done
-paste geneID *.temp > ../counts.txt # Le fichier count.txt est formé avec les count et les noms de gènes
+paste geneID *.temp > ../counts.txt
 
-rm *.temp # Suppression des fichiers temporaires
-rm geneID
+# Cleanup
+rm *.temp geneID
 
-echo "Lancement de multiqc"
-cd ../
+# -------------------------
+# === RUN MULTIQC ===
+# -------------------------
+echo "Launching MultiQC"
+cd "$OUTPUT_DIR"
 multiqc .
 
+echo "########## Salmon pipeline completed ##########"
