@@ -1,4 +1,4 @@
-# Genomic & Transcriptomic Analysis of Trichoderma atroviride
+# Molecular basis of mycoparasitic performance  : genomic and transcriptomic comparison of contrasting Trichoderma atroviride strains
 
 This repository contains scripts and analyses for de novo genome assembly, functional annotation, comparative genomics, RNA-Seq processing, and co-expression network analysis (WGCNA) of six Trichoderma atroviride strains.
 
