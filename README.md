@@ -57,6 +57,7 @@ Transcription
 └── 3-WGCNA
     └── WGCNA_RNAseq.R        # Weighted gene co-expression network analysis
 
+---
 
 ## Data Availability
 
@@ -64,6 +65,8 @@ All genomic and transcriptomic data used in this analysis are publicly available
 - Genome assemblies: deposited in [NCBI GenBank / ENA] (provide accession numbers)
 - Genome sequencing reads (PacBio HiFi): available under [NCBI SRA / ENA]
 - RNA-Seq reads: available under [NCBI SRA / ENA]
+
+---
 
 
 ## Genomic Analysis
