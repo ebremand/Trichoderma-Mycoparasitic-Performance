@@ -43,6 +43,9 @@ analyses, including:
 
 Citation
 --------
+Kai Blin, Simon Shaw, Lisa Vader, Judit Szenei, Zachary L Reitz, Hannah E Augustijn, José D D Cediel-Becerra, Valérie de Crécy-Lagard, 
+Robert A Koetsier, Sam E Williams, Pablo Cruz-Morales, Sopida Wongwas, Alejandro E Segurado Luchsinger, Friederike Biermann, 
+Aleksandra Korenskaia, Mitja M Zdouc, David Meijer, Barbara R Terlouw, Justin J J van der Hooft, Nadine Ziemert, Eric J N Helfrich, 
+Joleen Masschelein, Christophe Corre, Marc G Chevrette, Gilles P van Wezel, Marnix H Medema, & Tilmann Weber
 antiSMASH 8.0: extended gene cluster detection capabilities and analyses of chemistry, enzymology, and regulation
-Kai Blin, Simon Shaw, Lisa Vader, Judit Szenei, Zachary L Reitz, Hannah E Augustijn, José D D Cediel-Becerra, Valérie de Crécy-Lagard, Robert A Koetsier, Sam E Williams, Pablo Cruz-Morales, Sopida Wongwas, Alejandro E Segurado Luchsinger, Friederike Biermann, Aleksandra Korenskaia, Mitja M Zdouc, David Meijer, Barbara R Terlouw, Justin J J van der Hooft, Nadine Ziemert, Eric J N Helfrich, Joleen Masschelein, Christophe Corre, Marc G Chevrette, Gilles P van Wezel, Marnix H Medema, & Tilmann Weber
 Nucleic Acids Research (2025) doi: 10.1093/nar/gkaf334.
