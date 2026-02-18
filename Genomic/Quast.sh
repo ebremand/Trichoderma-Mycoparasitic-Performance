@@ -8,7 +8,6 @@
 #
 #   To use:
 #     - Edit the variables below to point to your assembly, reference, and output directory.
-#     - Run the script with bash or submit it with SLURM.
 ###############################################################################
 
 # -------------------------
