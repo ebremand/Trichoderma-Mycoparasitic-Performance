@@ -128,8 +128,11 @@ Objective: Identify gene models, extract proteomes, and annotate transposable el
 -----------------------
 
 3. Functional Annotation
+
 Objective: Assign functional information to predicted genes and proteins. 
+
 Several of these tools were used online and therefore do not have scripts. 
+
 Accordingly, .txt files were created to describe the workflow and the parameters used.
 
 - eggNOG.txt
