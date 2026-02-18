@@ -49,7 +49,7 @@ Genomic
 ├── 4-Genomic_comparison
 │   ├── Orthofinder.sh       # Ortholog group inference
 │   └── Upset_graph.R        # UpSet plot of shared ortholog groups
-Transcription
+Transcriptomic
 ├── 1-Alignments_Counts
 │   ├── Salmon.sh            # Read alignment and quantification with Salmon
 │   └── RNAseq_PCA.R         # PCA on RNA-Seq data
