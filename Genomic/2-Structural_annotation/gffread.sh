@@ -1,42 +1,78 @@
 #!/bin/bash
 ###############################################################################
-# Script: Busco.sh
+# Script: gffread.sh
 # Description:
-#   Run BUSCO to evaluate the completeness of a genome assembly.
+#   Extract CDS, transcripts and/or protein sequences from a genome annotation
+#   using gffread.
 #
 #   To use:
-#     - Edit the variables below to point to your assembly, output directory, lineage, and sample name.
+#     - Edit the variables below.
+#     - Set extraction options to true or false depending on what you want.
 ###############################################################################
 
 # -------------------------
 # === USER VARIABLES ===
 # -------------------------
-# Sample name
-SAMPLE="sample_name"
 
-# Path to your genome assembly
-ASSEMBLY="/path/to/your/assembly.fasta"
+# Sample prefix for output files
+PREFIX="sample_name"
 
-# Output directory for BUSCO results
-OUTPUT_DIR="./busco_results"
+# Genome FASTA file
+FASTA="/path/to/your/genome.fasta"
 
-# Path to BUSCO lineage dataset
-LINEAGE="/path/to/busco/lineages/fungi_odb10"
+# Annotation file (GFF/GFF3)
+GFF="/path/to/your/annotation.gff3"
 
-# Number of threads to use
-THREADS=10
+# Output directory
+OUTDIR="./gffread_results"
+
+# Set to true or false
+EXTRACT_CDS=false
+EXTRACT_TRANSCRIPTS=false
+EXTRACT_PROTEINS=true
+
+mkdir -p "$OUTDIR"
 
 # -------------------------
-# Run BUSCO
+# === RUN GFFREAD ===
 # -------------------------
-echo "=== Running BUSCO on $SAMPLE ==="
 
-busco -i "$ASSEMBLY" \
-      -o "$SAMPLE" \
-      -l "$LINEAGE" \
-      -m genome \
-      --cpu "$THREADS" \
-      -f \
-      --out "$OUTPUT_DIR"
+echo "=== Running gffread extraction ==="
 
-echo "BUSCO analysis completed. Results are in $OUTPUT_DIR/$SAMPLE"
+# Base gffread command
+GFFREAD_CMD="gffread \"$GFF\" -g \"$FASTA\""
+
+# Conditional options
+if [ "$EXTRACT_CDS" = true ]; then
+    GFFREAD_CMD+=" -x \"$OUTDIR/${PREFIX}_cds.fa\""
+    echo "[INFO] CDS extraction enabled"
+fi
+
+if [ "$EXTRACT_TRANSCRIPTS" = true ]; then
+    GFFREAD_CMD+=" -w \"$OUTDIR/${PREFIX}_transcripts.fa\""
+    echo "[INFO] Transcript extraction enabled"
+fi
+
+if [ "$EXTRACT_PROTEINS" = true ]; then
+    GFFREAD_CMD+=" -y \"$OUTDIR/${PREFIX}_proteins.fa\""
+    echo "[INFO] Protein extraction enabled"
+fi
+
+# Check that at least one output is requested
+if [ "$EXTRACT_CDS" = false ] && \
+   [ "$EXTRACT_TRANSCRIPTS" = false ] && \
+   [ "$EXTRACT_PROTEINS" = false ]; then
+    echo "[WARNING] No extraction selected. Nothing to do."
+    exit 1
+fi
+
+
+echo ""
+echo "[COMMAND]"
+echo "$GFFREAD_CMD"
+echo ""
+
+eval "$GFFREAD_CMD"
+
+echo "Extraction completed."
+echo "Results are available in: $OUTDIR"
