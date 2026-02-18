@@ -80,4 +80,65 @@ The aim of this project is to explore the molecular basis of mycoparasitism in *
 ---
 
 ## Repository Structure
+Trichoseed/
+│
+├─ data/
+│ ├─ counts.txt # RNA-seq count matrix
+│ ├─ parasitisme.txt # Trait table for WGCNA
+│ ├─ supplementary/trees/ # GH family phylogenetic trees (MAT & MET)
+│ └─ genome_files/ # Genome assemblies & annotations
+│
+├─ scripts/
+│ ├─ WGCNA_analysis.R # Full WGCNA workflow
+│ ├─ genome_comparison.R # Comparative genomics & ortholog analysis
+│ └─ preprocessing_scripts/ # Data preprocessing scripts
+│
+├─ results/
+│ ├─ Gene2Module.csv # Module assignments
+│ ├─ MEs.csv # Module eigengenes
+│ ├─ GS-MM_trait.csv # Module membership vs gene significance
+│ └─ Genes_trait.csv # Candidate genes
+│
+└─ README.md
+
+
+---
+
+## Installation
+
+Required software and R packages:  
+
+- R ≥ 3.6  
+- R packages: `WGCNA`, `flashClust`, `data.table`, `DESeq2`, `edgeR`, `cluster`, `FactoMineR`, `UpSetR`, `ape`  
+- Python 3.8 (optional for additional preprocessing)  
+- Tools: Flye, QUAST, BUSCO, Helixer, gffread, eggNOG-mapper, antiSMASH, dbCAN3, MEROPS, SignalP, EffectorP, OrthoFinder, Salmon  
+
+---
+
+## Usage
+
+1. Preprocess counts and trait files in `data/`.  
+2. Run `scripts/WGCNA_analysis.R` for co-expression network construction and module-trait analysis.  
+3. Run `scripts/genome_comparison.R` for genome assembly QC, annotation, and ortholog comparison.  
+4. Inspect results in `results/`.  
+
+---
+
+## References
+
+- Möller et al., 1992. *Nucleic Acids Research*  
+- Kolmogorov et al., 2019. *Nature Biotechnology*  
+- Gurevich et al., 2013. *Bioinformatics*  
+- Manni et al., 2021. *Molecular Biology and Evolution*  
+- Ondov et al., 2016. *Genome Biology*  
+- Stiehler et al., 2021. *Bioinformatics*  
+- Cantalapiedra et al., 2021. *Molecular Biology and Evolution*  
+- Blin et al., 2025. *Nucleic Acids Research*  
+- Langfelder & Horvath, 2008. *BMC Bioinformatics*  
+- Love et al., 2014. *Genome Biology*  
+- Carvalho et al., 2021. *BMC Genomics*  
+
+---
+
+*This repository is maintained by Etienne Bremand, IRHS – Université d’Angers, France.*
 
