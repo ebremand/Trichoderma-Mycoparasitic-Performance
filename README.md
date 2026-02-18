@@ -5,17 +5,12 @@ This repository contains scripts and analyses for de novo genome assembly, funct
 ---
 
 
-
-
-
-
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Arborescence](#Arborescence)
 - [Data Availability](#Data-Availability)
 - [Genomic Analysis](#Genomic-Analysis)
 - [Transcriptomic Analysis](#Transcriptomic-Analysis)
-
 
 
 ---
