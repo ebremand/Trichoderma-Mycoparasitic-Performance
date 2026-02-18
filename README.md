@@ -51,11 +51,12 @@ Genomic
 │   └── Upset_graph.R         # UpSet plot of shared ortholog groups
 Transcription
 ├── 1-Alignments_Counts
-│   ├── RNAseq_PCA.R          # PCA on RNA-Seq data
-│   └── Salmon.sh             # Read alignment and quantification with Salmon
+│   ├── Salmon.sh             # Read alignment and quantification with Salmon
+│   └── RNAseq_PCA.R          # PCA on RNA-Seq data
 ├── 2-AskoR
 │   └── RNAseq_DE_AskoR.R     # Differential expression analysis using AskoR
 └── 3-WGCNA
     └── WGCNA_RNAseq.R        # Weighted gene co-expression network analysis
-README.md
+
+
 
