@@ -28,8 +28,6 @@ This repository contains scripts and pipelines for genomic and transcriptomic an
 
 ## Arborescence
 
-## Arborescence
-
 ```
 Genomic
 ├── 1-Assembly
