@@ -169,6 +169,7 @@ Accordingly, .txt files were created to describe the workflow and the parameters
 -----------------------
 
 4. Comparative Genomics
+
 Objective: Identify orthologous gene groups across strains 
 and visualize shared gene content.
 
@@ -190,14 +191,17 @@ and visualize shared gene content.
 ## Transcriptomic Analysis
 
 The transcriptomic analysis pipeline includes three main steps: 
+
 1) Read alignment and PCA, 2) Differential Expression, 
-and 3) Co-expression Network Analysis (WGCNA). Each step 
-uses dedicated scripts to process RNA-Seq data and generate 
+and 3) Co-expression Network Analysis (WGCNA).
+
+Each step uses dedicated scripts to process RNA-Seq data and generate 
 interpretable outputs.
 
 -----------------------
 
 1. Read Alignment & PCA
+
 Objective: Align RNA-Seq reads, quantify gene expression, 
 and explore global patterns in the dataset.
 
@@ -214,6 +218,7 @@ and explore global patterns in the dataset.
 ---------------------------
 
 2. Differential Expression
+
 Objective: Identify genes significantly regulated between conditions.
 
 - RNAseq_DE_AskoR.R
