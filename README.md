@@ -33,7 +33,7 @@ Genomic
 ├── 1-Assembly
 │   ├── Busco.sh             # Genome quality assessment with BUSCO
 │   ├── Flye.sh              # De novo genome assembly with Flye
-│   ├── Mash_Tree.sh         # Genomic distance calculation & UPGMA tree
+│   ├── Mash_Tree.sh         # Genomic distance calculation
 │   └── Quast.sh             # Assembly quality assessment with QUAST
 ├── 2-Structural_annotation
 │   ├── EDTA.sh              # Transposable element annotation
