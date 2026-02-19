@@ -44,7 +44,7 @@ Genomic
 │   ├── dbCAN3.txt           # CAZyme annotation
 │   ├── eggNOG.txt           # Functional annotation (eggNOG)
 │   ├── MEROPS.sh            # Peptidase annotation
-│   ├── SignalP_EffectorP.sh # Effector protein prediction
+│   ├── SignalP_EffectorP.sh # Effector-like protein prediction
 │   └── STRING.txt           # Gene Ontology annotation
 ├── 4-Genomic_comparison
 │   ├── Orthofinder.sh       # Ortholog group inference
