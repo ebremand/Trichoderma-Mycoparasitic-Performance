@@ -27,8 +27,8 @@ GFF="/path/to/your/annotation.gff3"
 OUTDIR="./gffread_results"
 
 # Set to true or false
-EXTRACT_CDS=false
-EXTRACT_TRANSCRIPTS=false
+EXTRACT_CDS=true
+EXTRACT_TRANSCRIPTS=true
 EXTRACT_PROTEINS=true
 
 mkdir -p "$OUTDIR"
