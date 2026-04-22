@@ -87,7 +87,8 @@ N1508: GCA_982374855.1
 ## Genomic Analysis
 
 The genomic analysis pipeline is organized into four main steps: 
-1) Assembly, 2) Structural Annotation, 3) Functional Annotation, 
+1) Assembly
+2) Structural Annotation, 3) Functional Annotation, 
 and 4) Comparative Genomics. Each step uses dedicated scripts 
 to automate analyses and generate outputs for downstream interpretation.
 
