@@ -64,8 +64,9 @@ README.md                   # This file
 
 ## Data Availability
 
-All data have been deposited in the European Nucleotide Archive (ENA) and available on NCBI under project PRJEB108439. 
+All data have been deposited in the European Nucleotide Archive (ENA) and are accessible on National Center for Biotechnology Information (NCBI) under project PRJEB108439 (www.ncbi.nlm.nih.gov/bioproject/PRJEB108439/).
 This project includes raw DNA and RNA sequencing data, as well as genome assemblies and annotations for the T. atroviride strains.
+
 GenBank accession numbers fort T. atroviride assemblies and annotation : 
 
 I1237 : GCA_980757495.1
