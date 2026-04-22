@@ -195,7 +195,7 @@ and visualize shared gene content.
 
 The transcriptomic analysis pipeline includes three main steps: 
 
-1) Read alignment and PCA, 2) Differential Expression, 
+1) Read alignment and MDS, 2) Differential Expression, 
 and 3) Co-expression Network Analysis (WGCNA).
 
 Each step uses dedicated scripts to process RNA-Seq data and generate 
