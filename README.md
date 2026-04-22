@@ -87,8 +87,8 @@ N1508: GCA_982374855.1
 ## Genomic Analysis
 
 The genomic analysis pipeline is organized into four main steps: 
-1) Assembly, 2) Structural Annotation, 3) Functional Annotation, 
-and 4) Comparative Genomics. Each step uses dedicated scripts 
+Assembly, Structural Annotation, Functional Annotation, 
+and Comparative Genomics. Each step uses dedicated scripts 
 to automate analyses and generate outputs for downstream interpretation.
 
 -----------------------
@@ -207,8 +207,8 @@ and visualize shared gene content.
 
 The transcriptomic analysis pipeline includes three main steps: 
 
-1) Read alignment and MDS, 2) Differential Expression, 
-and 3) Co-expression Network Analysis (WGCNA).
+Read alignment and MDS, Differential Expression, 
+and Co-expression Network Analysis (WGCNA).
 
 Each step uses dedicated scripts to process RNA-Seq data and generate 
 interpretable outputs.
