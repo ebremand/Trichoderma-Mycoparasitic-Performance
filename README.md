@@ -250,7 +250,6 @@ Objective: Identify modules of co-expressed genes.
 
 - WGCNA_RNAseq.R
   Performs weighted gene co-expression network analysis using WGCNA:
-    - Filters low-expressed genes (mean count ≥ 0.5)
     - Variance stabilization with DESeq2 VST
     - Constructs signed hybrid networks
     - Detects modules (soft threshold = 8, min module size = 30, 
